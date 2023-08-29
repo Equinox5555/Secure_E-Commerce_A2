@@ -1,3 +1,11 @@
+<?php
+//main page
+// Include configuration file
+include_once "config-paypal.php";
+// Include database file
+include_once "data.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,44 +109,22 @@
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets/img/dummyimg.jpg" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Product Name </a></h3>
-                                <p>Price : <strong>$ 100</strong>  </p>
-                                
-                                
-                                <p><a href="#" class="btn btn-success" role="button">Buy</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
+                    <?php foreach ($item as $i) { ?>
+                        <div class="col-md-4 text-center col-sm-6 col-xs-6">
+                            <div class="thumbnail product-box">
+                                <img src="<?php echo $i['image'] ?>" alt="" />
+                                <div class="caption">
+                                    <h3><a href="#"><?php echo $i['name'] ?></a></h3>
+                                    <p>Price : <?php echo $i['price'] ?>  </p>
+                                    <form id="form <?php echo $i['id'] ?>" action="cart.php" method="post">
+                                        <input type="hidden" id="<?php echo $i['id'] ?>" name="<?php echo $i['id'] ?>" value="<?php echo $i['id'] ?>">
+                                        <input type=submit value="Buy" class="btn btn-success">
+                                    </form>
+                                    
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets/img/dummyimg.jpg" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Product Name </a></h3>
-                                <p>Price : <strong>$ 100</strong>  </p>
-                                
-                                
-                                <p><a href="#" class="btn btn-success" role="button">Buy</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                        <div class="thumbnail product-box">
-                            <img src="assets/img/dummyimg.jpg" alt="" />
-                            <div class="caption">
-                                <h3><a href="#">Product Name </a></h3>
-                                <p>Price : <strong>$ 100</strong>  </p>
-                                
-                                
-                                <p><a href="#" class="btn btn-success" role="button">Buy</a> <a href="#" class="btn btn-primary" role="button">See Details</a></p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
