@@ -117,7 +117,7 @@ include_once "data.php";
                                     <h3><a href="#"><?php echo $i['name'] ?></a></h3>
                                     <p>Price : <?php echo $i['price'] ?>  </p>
                                     <form id="form <?php echo $i['id'] ?>" action="cart.php" method="post">
-                                        <input type="hidden" id="<?php echo $i['id'] ?>" name="<?php echo $i['id'] ?>" value="<?php echo $i['id'] ?>">
+                                        <input type="hidden" id="<?php echo $i['id'] ?>" name="id" value="<?php echo $i['id'] ?>">
                                         <input type=submit value="Buy" class="btn btn-success">
                                     </form>
                                     
