@@ -13,7 +13,7 @@ include_once "data.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cart</title>
+    <title>Select Payment Option</title>
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!-- Fontawesome core CSS -->
@@ -107,62 +107,21 @@ include_once "data.php";
                         </div>
                     </div>
                 </div>
-                <!-- Display Cart Content -->
-                <div id="cart">
-                    <h1>Shopping Cart</h1>
-                    <table>
-                        <tr>
-                            <th>Remove</th>
-                            <th>Image</th>
-                            <th>Project Description</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th>Total</th>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="<?php echo $_POST['id'] ?>" name="<?php echo $_POST['id'] ?>"></td>
-                            <td><img style="max-width: 120px; max-height: 120px;" src="<?php echo $item[$_POST['id']-1]['image'] ?>"></td>
-                            <td><?php echo $item[$_POST['id']-1]['description'] ?></td>
-                            <td><?php echo $item[$_POST['id']-1]['price'] ?></td>
-                            <td><input type="number" id="quantity" name="quantity" value="1" min="1" size="4"></td>
-                            <!-- js calculation -->
-                            <td></td>
-                        </tr>
-                    </table>
-                    <button type="button" class="btn btn-danger">Remove Item</button>
-                    <button type="button" class="btn btn-primary">Update Quantity</button>
-                    <h1>Billing Information</h1>
-                    <form id="billing-details" action="payment-framework.php" method="post">
-                        <label for="firstname">First name</label>
-                        <br>
-                        <input type="text" id="firstname" name="firstname"></input>
-                        <br>
-                        <label for="lastname">Last name</label>
-                        <br>
-                        <input type="text" id="lastname" name="lastname"></input>
-                        <br>
-                        <label for="username">User name</label>
-                        <br>
-                        <input type="text" id="username" name="username"></input>
-                        <br>
-                        <label for="email">Email (optional)</label>
-                        <br>
-                        <input type="text" id="email" name="email"></input>
-                        <br>
-                        <label for="address">Address</label>
-                        <br>
-                        <input type="text" id="address" name="address"></input>
-                        <br>
-                        <label for="address2">Address 2 (Optional)</label>
-                        <br>
-                        <input type="text" id="address2" name="address2"></input>
-                        <br>
-                        <label for="zip">Zip</label>
-                        <br>
-                        <input type="number" id="zip" name="zip"></input>
-                        <br>
-                        <input type="submit" class="btn btn-success" name="submit" value="submit">
+                <!-- Display Payment Framework -->
+                <div id="payment-framework">
+                    <h1>Select payment option</h1>
+                    <form id="payment-framework" action="processing-controller.php" method="post">
+                        <input type="radio" id="google" name="payment-option" value="Google">
+                        <label for="google">Google</label><br>
+                        <input type="radio" id="paypal" name="payment-option" value="Paypal">
+                        <label for="paypal">Paypal</label><br>
+                        <input type="radio" id="apple-pay" name="payment-option" value="Apple-Pay">
+                        <label for="apple-pay">Apple-Pay</label><br>
+                        <input type="radio" id="alipay" name="payment-option" value="Alipay">
+                        <label for="alipay">Alipay</label><br>
+                        <input type="submit" class="btn btn-success" value="Submit">
                     </form>
+                        
                 </div>
                 <!-- /.row -->
                 
