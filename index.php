@@ -15,172 +15,62 @@ include_once "data.php";
     <meta name="author" content="">
     <title>Bootstrap E-Commerce Template</title>
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Fontawesome core CSS -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-    <!--GOOGLE FONT -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!--Slide Show Css -->
-    <link href="assets/ItemSlider/css/main-style.css" rel="stylesheet" />
-    <!-- custom CSS here -->
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css>
+    <link rel="stylesheet" href="./assets/css/layout.css">
 </head>
-<body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><strong>ALICE'S</strong> E-Shop</a>
-            </div>
+<body style="background-color:powderblue;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand text-info" href="#">OrdinaryWebsite</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Secure-E_Commerce/index.php">Home <span
+                            class="sr-only">(current)</span></a>
+                </li>
+            </ul>
 
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Track Order</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Signup</a></li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">24x7 Support <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><strong>Call: </strong>+61-000-000-000</a></li>
-                            <li><a href="#"><strong>Mail: </strong>info@aliceeshop.com</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><strong>Address: </strong>
-                                <div>
-                                    Melbourne,<br />
-                                    VIC 3000, AUSTRALIA
-                                </div>
-                            </a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" placeholder="Enter Keyword Here ..." class="form-control">
-                    </div>
-                    &nbsp; 
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-    <div class="container">
-
-        <div class="row">
-      
-            <div class="col-md-9">
-                <div>
-                    <ol class="breadcrumb">
-                        
-                        <li class="active">Computers</li>
-                    </ol>
-                </div>
-                <!-- /.div -->
-                <div class="row">
-                    <div class="btn-group alg-right-pad">
-                        <button type="button" class="btn btn-default"><strong>1235  </strong>items</button>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                                Sort Products &nbsp;
-      <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">By Price Low</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Price High</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Popularity</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">By Reviews</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <?php foreach ($item as $i) { ?>
-                        <div class="col-md-4 text-center col-sm-6 col-xs-6">
-                            <div class="thumbnail product-box">
-                                <img src="<?php echo $i['image'] ?>" alt="" />
-                                <div class="caption">
-                                    <h3><a href="#"><?php echo $i['name'] ?></a></h3>
-                                    <p>Price : <?php echo $i['price'] ?>  </p>
-                                    <form id="form <?php echo $i['id'] ?>" action="cart.php" method="post">
-                                        <input type="hidden" id="<?php echo $i['id'] ?>" name="id" value="<?php echo $i['id'] ?>">
-                                        <input type=submit value="Buy" class="btn btn-success">
-                                    </form>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-
-                </div>
-                <!-- /.row -->
+            <!-- If logged in, this section should be replaced by Hi username! -->
+            <!-- <ul class="navbar-nav my-2 my-lg-0">
                 
-            </div>
-            <!-- /.col -->
+            </ul> -->
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-    
+    </nav>
 
-    <!--Footer -->
-    <div class="col-md-12 footer-box">
-
-
-        
-
-            <div class="col-md-4">
-                <strong>Our Location</strong>
-                <hr>
-                <p>
-                     Swanston St, Melbourne,<br />
-                                    VIC 3000, Australia<br />
-                    Call: +61-000-000-000<br>
-                    Email: info@aliceeshop.com<br>
-                </p>
-
-                2020 www.aliceeshop.com | All Right Reserved
+    <div class="page-container">
+        <div id="content-wrap" class="container">
+            <h1 class="text-info">Products Page</h1>
+            <div class="card-deck justify-content-md-center">
+                <?php foreach ($items as $item): ?>
+                    <div class="card text-center border-secondary">
+                        <div class="card-body">
+                        <img class ="card-img-top img-fluid" height="20vh" src=<?php echo $item["image"]?> alt=<?php echo $item["name"] ?>>
+                            <h5 class="card-title"><?php echo $item["name"] ?></h5>
+                            <p class="card-text"><?php echo $item["description"] ?></p>
+                            <form id="form <?php echo $item['id'] ?>" action="cart.php" method="post">
+                                <input type="hidden" id="<?php echo $item['id'] ?>" name="id" value="<?php echo $item['id'] ?>">
+                                <input type=submit value="Buy" class="btn btn-success">
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-          
         </div>
-        <hr>
     </div>
-    <!-- /.col -->
-    <div class="col-md-12 end-box ">
-        &copy; 2020 | &nbsp; All Rights Reserved | &nbsp; www.aliceeshop.com | &nbsp; 24x7 support | &nbsp; Email us: info@aliceeshop.com
-    </div>
-    <!-- /.col -->
-    <!--Footer end -->
-    <!--Core JavaScript file  -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <!--bootstrap JavaScript file  -->
-    <script src="assets/js/bootstrap.js"></script>
-    <!--Slider JavaScript file  -->
-    <script src="assets/ItemSlider/js/modernizr.custom.63321.js"></script>
-    <script src="assets/ItemSlider/js/jquery.catslider.js"></script>
-    <script>
-        $(function () {
-
-            $('#mi-slider').catslider();
-
-        });
-		</script>
+    <footer id="footer"
+            class="d-flex flex-wrap justify-content-between align-items-center py-2 my-0 border-top bg-dark">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+                <span class="mb-3 mb-md-0 text-light">© 2023 OrdinaryWebsite Inc</span>
+            </div>
+        </footer>
 </body>
 </html>
