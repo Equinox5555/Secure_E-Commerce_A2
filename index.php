@@ -1,7 +1,5 @@
 <?php
 //main page
-// Include configuration file
-include_once "config-paypal.php";
 // Include database file
 include_once "data.php";
 ?>
@@ -29,7 +27,7 @@ include_once "data.php";
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/Secure-E_Commerce/index.php">Home <span
+                    <a class="nav-link" href="/Secure_E-Commerce_A2/index.php">Home <span
                             class="sr-only">(current)</span></a>
                 </li>
             </ul>
@@ -44,17 +42,20 @@ include_once "data.php";
     <div class="page-container">
         <div id="content-wrap" class="container">
             <h1 class="text-info">Products Page</h1>
-            <div class="card-deck justify-content-md-center">
-                <?php foreach ($items as $item): ?>
-                    <div class="card text-center border-secondary">
-                        <div class="card-body">
-                        <img class ="card-img-top img-fluid" height="20vh" src=<?php echo $item["image"]?> alt=<?php echo $item["name"] ?>>
-                            <h5 class="card-title"><?php echo $item["name"] ?></h5>
-                            <p class="card-text"><?php echo $item["description"] ?></p>
-                            <form id="form <?php echo $item['id'] ?>" action="cart.php" method="post">
-                                <input type="hidden" id="<?php echo $item['id'] ?>" name="id" value="<?php echo $item['id'] ?>">
-                                <input type=submit value="Buy" class="btn btn-success">
-                            </form>
+            <div class="row">
+                <?php foreach ($items as $i): ?>
+                    <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                        <div class="card border-secondary">
+                            <div class="card-body">
+                            <img class ="card-img-top img-fluid" height="20vh" src=<?php echo $i["image"]?> alt=<?php echo $i["name"] ?>>
+                                <h5 class="card-title"><?php echo $i["name"] ?></h5>
+                                <p class="card-text"><?php echo $i["specs"] ?></p>
+                                <form class="text-center" action="cart.php" method="post">
+                                    <input type="hidden" name="item_name" value="<?php echo $i["name"]; ?>" />
+                                    <input type="hidden" name="item_number" value="<?php echo $i["id"]; ?>" />
+                                    <input type=submit value="Buy" class="btn btn-success">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
