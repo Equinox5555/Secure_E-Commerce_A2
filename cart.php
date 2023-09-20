@@ -62,12 +62,27 @@ include_once "data.php";
                         <script>
                         function Calculate(val) {
                             document.getElementById("total").innerHTML = "$" + val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
+                            document.getElementById("paypal-quantity").value = val;
                         }
                         </script></td>
-                    <!-- js calculation -->
                     <td><div id="total">$<?php echo $items[$_POST['item_number']-1]['price'] ?></div></td>
                 </tr>
             </table>
+            <h1>Select payment method</h1>
+            <form action="<?php echo PAYPAL_URL; ?>" method="post">
+                <input type="hidden" name="cmd" value="_xclick" />
+                <input type="hidden" name="business" value="<?php echo PAYPAL_ID; ?>" />
+                <input type="hidden" name="currency_code" value="<?php echo PAYPAL_CURRENCY; ?>" />
+
+                <input type="hidden" name="item_name" value="<?php echo $items[$_POST['item_number']-1]['name'] ?>">
+                <input type="hidden" name="item_number" value="<?php echo $items[$_POST['item_number']-1]['id'] ?>">
+                <input type="hidden" name="amount" value="<?php echo $items[$_POST['item_number']-1]['price'] ?>">
+                <input type="hidden" name="quantity" id="paypal-quantity" value=1>
+
+                <input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL; ?>">
+                <input type="hidden" name="notify_url" value="<?php echo PAYPAL_NOTIFY_URL; ?>">
+                <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"/>
+            </form>
         </div>
     </div>
     <footer id="footer"
