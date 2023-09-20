@@ -62,10 +62,13 @@ include_once "data.php";
                         <script>
                         function Calculate(val) {
                             document.getElementById("total").innerHTML = "$" + val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
+                            document.getElementById("total").value = val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
                             document.getElementById("paypal-quantity").value = val;
+                            // Call google to change total price
+
                         }
                         </script></td>
-                    <td><div id="total">$<?php echo $items[$_POST['item_number']-1]['price'] ?></div></td>
+                    <td><div id="total" value="<?php echo $items[$_POST['item_number']-1]['price'] ?>">$<?php echo $items[$_POST['item_number']-1]['price'] ?></div></td>
                 </tr>
             </table>
             <h1>Select payment method</h1>
@@ -83,6 +86,10 @@ include_once "data.php";
                 <input type="hidden" name="notify_url" value="<?php echo PAYPAL_NOTIFY_URL; ?>">
                 <input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"/>
             </form>
+            <div id="container">
+                <script src="Googlepay/googlepay.js"></script>
+                <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+            </div>
         </div>
     </div>
     <footer id="footer"
