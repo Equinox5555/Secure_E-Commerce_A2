@@ -4,6 +4,8 @@
 include_once "Paypal/config.php";
 // Include database file
 include_once "data.php";
+
+include_once "Stripe/stripe-php-12.4.0/config.php";
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +47,14 @@ include_once "data.php";
         <div id="content-wrap" class="container">
             <h1 class="text-info">Shopping Cart</h1>
             <table class="table bg-white">
+                <script>
+                    function Calculate(val) {
+                        document.getElementById("total").innerHTML = "$" + val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
+                        document.getElementById("total").value = val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
+                        document.getElementById("paypal-quantity").value = val;
+                        document.getElementById("stripe-quantity").value = val;
+                    }
+                </script>
                 <tr>
                     <th>Remove</th>
                     <th>Image</th>
@@ -58,16 +68,7 @@ include_once "data.php";
                     <td><img style="max-width: 120px; max-height: 120px;" src="<?php echo $items[$_POST['item_number']-1]['image'] ?>"></td>
                     <td><?php echo $items[$_POST['item_number']-1]['description'] ?></td>
                     <td id="price"><?php echo $items[$_POST['item_number']-1]['price'] ?></td>
-                    <td><input type="number" name="quantity" id="quantity" value="1" onchange="Calculate(this.value)">
-                        <script>
-                        function Calculate(val) {
-                            document.getElementById("total").innerHTML = "$" + val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
-                            document.getElementById("total").value = val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
-                            document.getElementById("paypal-quantity").value = val;
-                            // Call google to change total price
-
-                        }
-                        </script></td>
+                    <td><input type="number" name="quantity" id="quantity" value="1" onload="Calculate(this.value)" onchange="Calculate(this.value)"></td>
                     <td><div id="total" value="<?php echo $items[$_POST['item_number']-1]['price'] ?>">$<?php echo $items[$_POST['item_number']-1]['price'] ?></div></td>
                 </tr>
             </table>
@@ -90,6 +91,14 @@ include_once "data.php";
                 <script src="Googlepay/googlepay.js"></script>
                 <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
             </div>
+            <form action="<?php echo STRIPE_URL; ?>" method="post">
+                <input type="hidden" name="currency_code" value="<?php echo PAYPAL_CURRENCY; ?>" />
+                <input type="hidden" name="item_name" value="<?php echo $items[$_POST['item_number']-1]['name'] ?>">
+                <input type="hidden" name="item_number" value="<?php echo $items[$_POST['item_number']-1]['id'] ?>">
+                <input type="hidden" name="amount" value="<?php echo $items[$_POST['item_number']-1]['price'] ?>">
+                <input type="hidden" name="quantity" id="stripe-quantity" value=1>
+                <button type="submit">Checkout</button>
+            </form>
         </div>
     </div>
     <footer id="footer"
