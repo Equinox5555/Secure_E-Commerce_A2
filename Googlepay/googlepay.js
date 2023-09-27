@@ -227,6 +227,7 @@ function getGoogleTransactionInfo(val) {
 //9. Register an event handler for user gestures
 function onGooglePaymentButtonClicked() {
   const val = parseFloat(document.getElementById("total").value);
+  console.log(val);
   const paymentDataRequest = getGooglePaymentDataRequest(val);
   paymentDataRequest.transactionInfo = getGoogleTransactionInfo(val);
 
