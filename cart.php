@@ -20,7 +20,7 @@ include_once "Stripe/stripe-php-12.4.0/config.php";
     <link rel="stylesheet" href=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css>
     <link rel="stylesheet" href="./assets/css/layout.css">
 </head>
-<body style="background-color:powderblue;">
+<body style="background-color:powderblue;" onload="Calculate(1)">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand text-info" href="#">OrdinaryWebsite</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,14 +47,6 @@ include_once "Stripe/stripe-php-12.4.0/config.php";
         <div id="content-wrap" class="container">
             <h1 class="text-info">Shopping Cart</h1>
             <table class="table bg-white">
-                <script>
-                    function Calculate(val) {
-                        document.getElementById("total").innerHTML = "$" + val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
-                        document.getElementById("total").value = val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
-                        document.getElementById("paypal-quantity").value = val;
-                        document.getElementById("stripe-quantity").value = val;
-                    }
-                </script>
                 <tr>
                     <th>Remove</th>
                     <th>Image</th>
@@ -69,7 +61,7 @@ include_once "Stripe/stripe-php-12.4.0/config.php";
                     <td><?php echo $items[$_POST['item_number']-1]['description'] ?></td>
                     <td id="price"><?php echo $items[$_POST['item_number']-1]['price'] ?></td>
                     <td><input type="number" name="quantity" id="quantity" value="1" onload="Calculate(this.value)" onchange="Calculate(this.value)"></td>
-                    <td><div id="total" value="<?php echo $items[$_POST['item_number']-1]['price'] ?>">$<?php echo $items[$_POST['item_number']-1]['price'] ?></div></td>
+                    <td><div id="total" value="<?php echo intval($items[$_POST['item_number']-1]['price']) ?>">$<?php echo $items[$_POST['item_number']-1]['price'] ?></div></td>
                 </tr>
             </table>
             <h1>Select payment method</h1>
@@ -112,5 +104,13 @@ include_once "Stripe/stripe-php-12.4.0/config.php";
                 <span class="mb-3 mb-md-0 text-light">© 2023 OrdinaryWebsite Inc</span>
             </div>
         </footer>
+    <script>
+        function Calculate(val) {
+            document.getElementById("total").innerHTML = "$" + val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
+            document.getElementById("total").value = val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
+            document.getElementById("paypal-quantity").value = val;
+            document.getElementById("stripe-quantity").value = val;
+        }
+    </script>
 </body>
 </html>

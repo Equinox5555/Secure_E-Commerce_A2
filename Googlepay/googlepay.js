@@ -228,6 +228,10 @@ function getGoogleTransactionInfo(val) {
 function onGooglePaymentButtonClicked() {
   const val = parseFloat(document.getElementById("total").value);
   console.log(val);
+  console.log(document.getElementById("quantity").value);
+  console.log(document.getElementById("price").value);
+  console.log(typeof document.getElementById("total").value);
+
   const paymentDataRequest = getGooglePaymentDataRequest(val);
   paymentDataRequest.transactionInfo = getGoogleTransactionInfo(val);
 
