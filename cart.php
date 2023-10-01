@@ -89,8 +89,17 @@ include_once "Stripe/stripe-php-12.4.0/config.php";
                 <input type="hidden" name="item_number" value="<?php echo $items[$_POST['item_number']-1]['id'] ?>">
                 <input type="hidden" name="amount" value="<?php echo $items[$_POST['item_number']-1]['price'] ?>">
                 <input type="hidden" name="quantity" id="stripe-quantity" value=1>
-                <button type="submit">Checkout</button>
+                <button type="submit">Stripe</button>
             </form>
+            <div>
+            <form class="form-container" method="post" action="Square/checkout.php">
+                <input type="hidden" name="item_name" value="<?php echo $items[$_POST['item_number']-1]['name'] ?>">
+                <input type="hidden" name="item_number" value="<?php echo $items[$_POST['item_number']-1]['id'] ?>">
+                <input type="hidden" name="amount" value="<?php echo $items[$_POST['item_number']-1]['price'] ?>">
+                <input type="hidden" name="quantity" id="square-quantity" value=1>
+                <button type="submit">Square</button>
+            </form>
+            </div>
         </div>
     </div>
     <footer id="footer"
@@ -110,6 +119,7 @@ include_once "Stripe/stripe-php-12.4.0/config.php";
             document.getElementById("total").value = val * <?php echo $items[$_POST['item_number']-1]['price'] ?>;
             document.getElementById("paypal-quantity").value = val;
             document.getElementById("stripe-quantity").value = val;
+            document.getElementById("square-quantity").value = val;
         }
     </script>
 </body>
